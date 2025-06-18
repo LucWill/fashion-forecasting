@@ -3,6 +3,7 @@ from fastapi.testclient import TestClient
 from fashion_pipeline.report.dashboard_htmx import app
 
 
+
 client = TestClient(app)
 
 
