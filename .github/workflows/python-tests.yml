@@ -29,6 +29,9 @@ jobs:
         pip install -e ./python-package
         pip install -r requirements.txt
         python -m spacy download en_core_web_sm
+        python -m spacy download en_core_web_md
+        pip install pytest spacytextblob
+
 
     - name: Run tests with pytest
       run: |
