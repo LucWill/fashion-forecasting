@@ -5,5 +5,5 @@ notebook
 pytest
 spacytextblob
 fastapi
-fasthtml
+python-fasthtml
 pytest
