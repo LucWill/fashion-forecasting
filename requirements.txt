@@ -4,3 +4,6 @@ spacy
 notebook
 pytest
 spacytextblob
+fastapi
+fasthtml
+pytest
