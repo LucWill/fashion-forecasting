@@ -56,7 +56,8 @@ def test_contrast_word_counter():
     data = pd.Series(["I liked it but not a lot", "However, I enjoyed it"])
     counter = ContrastWordCounter()
     result = counter.transform(data)
-    assert result == [[3], [1]]
+    np.testing.assert_array_equal(result, np.array([[3], [1]]))
+
 
 
 # ---------- MeasureTextLength ----------
@@ -65,7 +66,8 @@ def test_measure_text_length():
     data = pd.Series(["test", "", "12345"])
     measurer = MeasureTextLength()
     result = measurer.transform(data)
-    assert result == [[4], [0], [5]]
+    np.testing.assert_array_equal(result, np.array([[4], [0], [5]]))
+
 
 
 # ---------- CharacterCountSingleColumnTransformer ----------
