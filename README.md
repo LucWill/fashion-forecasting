@@ -3,7 +3,7 @@
 **Predict customer product recommendations from text reviews using NLP and machine learning.**  
 This project showcases end-to-end ML pipeline design, from preprocessing and feature engineering to model evaluation and deployment, with a focus on **interpretability and modularity**.
 
-## 💼 Project Summary (for Recruiters)
+## 💼 Project Summary
 
 - **Goal**: Predict whether a customer would recommend a product based on their written review and metadata.
 - **Accuracy**: Achieved **91% accuracy** on the test set using an `MLPClassifier`.
