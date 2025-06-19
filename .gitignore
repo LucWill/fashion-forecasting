@@ -66,5 +66,5 @@ tests/.pytest_cache/
 # Data and model artifacts (optional)
 # ---------------------
 starter/reviews.csv
-python-package/fashion_pipeline/data/*.pkl
-python-package/fashion_pipeline/data/*.csv
+#python-package/fashion_pipeline/data/*.pkl
+#python-package/fashion_pipeline/data/*.csv
