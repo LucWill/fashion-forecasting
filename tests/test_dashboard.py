@@ -1,6 +1,5 @@
-import pytest
 from starlette.testclient import TestClient
-from fashion_pipeline.report.dashboard_htmx import app
+from fashion_pipeline.report.dashboard import app
 from unittest.mock import patch
 
 client = TestClient(app)

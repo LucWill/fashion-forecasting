@@ -1,4 +1,3 @@
-import pytest
 import pandas as pd
 import numpy as np
 from fashion_pipeline.spacy_transformers import (
@@ -31,7 +30,8 @@ def test_spacy_pos_features_single_column_output_shape_and_keys():
 
 
 def test_spacy_pos_ner_features_multi_column_output_shape():
-    transformer = SpacyPosNerFeaturesMultiCharRelative(["Title", "Review Text"])
+    transformer = SpacyPosNerFeaturesMultiCharRelative(["Title",
+                                                        "Review Text"])
     df = pd.DataFrame({
         "Title": ["Lovely material"],
         "Review Text": ["This dress is elegant and comfortable."]

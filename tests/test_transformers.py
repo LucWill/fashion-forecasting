@@ -59,7 +59,6 @@ def test_contrast_word_counter():
     np.testing.assert_array_equal(result, np.array([[3], [1]]))
 
 
-
 # ---------- MeasureTextLength ----------
 
 def test_measure_text_length():
@@ -67,7 +66,6 @@ def test_measure_text_length():
     measurer = MeasureTextLength()
     result = measurer.transform(data)
     np.testing.assert_array_equal(result, np.array([[4], [0], [5]]))
-
 
 
 # ---------- CharacterCountSingleColumnTransformer ----------
@@ -87,7 +85,8 @@ def test_character_count_single_column_transformer():
 
 def test_character_counts_multi_column_transformer():
     base = CountCharacter(character="o")
-    transformer = CharacterCountsMultiColumnTransformer(["title", "review"], base)
+    transformer = CharacterCountsMultiColumnTransformer(["title",
+                                                         "review"], base)
     df = pd.DataFrame({
         "title": ["hello", "no one"],
         "review": ["soon", "zoo"]
