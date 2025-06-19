@@ -1,156 +1,138 @@
+# 📝 Text Review Classification Pipeline
 
-# 🧵 Fashion Forward Forecasting – StyleSense Recommendation Predictor
+**Predict customer product recommendations from text reviews using NLP and machine learning.**  
+This project showcases end-to-end ML pipeline design, from preprocessing and feature engineering to model evaluation and deployment, with a focus on **interpretability and modularity**.
 
-## 📌 Project Overview
+## 💼 Project Summary (for Recruiters)
 
-**StyleSense** is a rapidly growing online retailer in women's fashion. As the customer base grows, the company faces a backlog of product reviews with missing information about whether a product was recommended. This project addresses that challenge by creating a **machine learning pipeline** to predict product recommendations based on review text, customer data, and product information.
-
-The model analyzes:
-- 📝 Review text (`Title` and `Review Text`)
-- 🎂 Customer age
-- 🧵 Product metadata (e.g., class, department)
-- 📈 Feedback metrics
-
-The output is a prediction: **Will the customer recommend the product or not?**
-
----
-
-## 🧪 Project Structure
-
-| File/Folder | Description |
-|-------------|-------------|
-| `notebook.ipynb` | Main notebook with data exploration, pipeline definition, model training & evaluation |
-| `pipeline.py` | (Optional) Python module defining reusable pipeline components |
-| `spacy_transformers.py` | (Optional) Custom NLP transformers (e.g., lemmatizer, POS/NER) |
-| `model.pkl` | Trained model pipeline saved for deployment/inference |
-| `README.md` | Project overview and instructions (this file) |
-| `data/` | (Optional) Folder containing the raw dataset |
+- **Goal**: Predict whether a customer would recommend a product based on their written review and metadata.
+- **Accuracy**: Achieved **91% accuracy** on the test set using an `MLPClassifier`.
+- **NLP**: Used `spaCy` for lemmatization, POS/NER, and custom transformers.
+- **ML Models**: Compared `RandomForest`, `GradientBoosting`, `MLP`, and `LogisticRegression`.
+- **Deployment**: Built an **interactive prediction dashboard** for real-time text classification.
+- **Code Quality**: Modular, test-driven design (`pytest`), reusable components, well-documented.
 
 ---
 
-## 🧰 Technologies Used
+## 🧠 What This Project Demonstrates
 
-- Python 3.x
-- `pandas`, `numpy` for data handling
-- `scikit-learn` for preprocessing, modeling, and pipeline structure
-- `spaCy` for NLP (lemmatization, POS/NER)
-- `matplotlib`, `seaborn` for visualization
-- (Optional) `Streamlit` or `Gradio` for interactive dashboard
+✅ **Real-world ML pipeline** from raw text to prediction  
+✅ **Explainable preprocessing** and custom NLP features  
+✅ **Evaluation-driven modeling decisions**  
+✅ **Software engineering skills**: clean package structure, automated tests, reproducibility
 
 ---
 
-## ⚙️ Pipeline Overview
+## 🗂️ Repository Structure
 
-The ML pipeline handles **preprocessing, feature engineering, training, and inference** in one structure:
-
-### Preprocessing Steps:
-- Imputation of missing values (numeric & categorical)
-- Scaling for numerical features
-- One-hot encoding for categorical features
-- TF-IDF vectorization for text fields
-- Custom NLP features (e.g., lemmatization, POS/NER)
-
-### Model:
-- `RandomForestClassifier` (initial baseline)
-- Tuned using `GridSearchCV` for better performance
-
-### Evaluation:
-- Train/test split
-- Classification metrics: accuracy, precision, recall, F1-score
-- Visualization of results and feature importance
-
----
-
-## 📊 Results
-
-- Achieved **X% accuracy** on the test set
-- Insights:
-  - Text features provided strong predictive power
-  - Customers in certain product categories were more likely to recommend items
-  - Feedback counts and review length also showed signal
-
-*(Update with actual performance numbers and insights.)*
-
----
-
-## 🧠 Future Improvements
-
-- Incorporate word embeddings or transformer-based NLP (e.g., `spaCy` vectors, BERT)
-- Explore sentiment analysis
-- Build an interactive prediction dashboard
-- Deploy pipeline with a front-end using Streamlit or Gradio
-
----
-
-
-
-## Getting Started
-
-### Installation
-```bash
-pip install -r requirements.txt
+```
+.
+├── python-package/
+│   └── fashion_pipeline/
+│       ├── pipeline.py              ← Full ML pipeline (numerical, categorical, text)
+│       ├── transformers.py          ← Custom sklearn transformers
+│       ├── spacy_transformers.py    ← spaCy-based NLP feature extraction
+│       ├── utils.py                 ← Load models and data
+│       ├── data/
+│       │   ├── reviews.csv
+│       │   ├── gb_model.pkl
+│       │   ├── lr_model.pkl
+│       ├── report/dashboard.py      ← Interactive prediction interface
+├── starter/starter.ipynb            ← Notebook for EDA, modeling, and insights
+├── tests/                           ← Unit tests for each pipeline component
 ```
 
-### Running the Notebook
-```bash
-jupyter notebook notebook.ipynb
-```
+---
 
-### Using the Trained Model
+## 📊 Evaluation Highlights
+
+- **Best model**: `MLPClassifier` with **91% test accuracy**
+- **Textual features** provided the most predictive power
+- **Numerical & categorical data** (e.g., age, department) had limited impact
+- **Length of review & feedback count** didn’t significantly improve performance
+- **Confusion matrix** used to evaluate precision/recall tradeoffs
+
+---
+
+## 🚀 Deployment & Usage
+
+### Interactive Dashboard  
+A custom lightweight HTML app allows users to input a review and receive instant prediction results from the `GradientBoostingClassifier`.
+
+### Example API Use
+
 ```python
-import joblib
-pipeline = joblib.load('model.pkl')
-prediction = pipeline.predict([new_data_dict])
+from fashion_pipeline.utils import load_model
+
+# Load default model
+model = load_model()
+
+# Load alternative model from data/ folder
+model = load_model("rf_model.pkl")
+
+sample = {
+    "Title": "Love this dress!",
+    "Review Text": "The fit is amazing and the color is vibrant.",
+    "Age": 28,
+    "Division Name": "General",
+    "Department Name": "Dresses",
+    "Class Name": "Dresses"
+}
+
+model.predict([sample])  # Output: [1] (recommended)
 ```
 
 ---
 
-### Dependencies
+## 🧪 Testing
 
-```
-Examples here
-```
+Run all tests via:
 
-### Installation
-
-Step by step explanation of how to get a dev environment running.
-
-List out the steps
-
-```
-Give an example here
+```bash
+pytest
 ```
 
-## Testing
+### Test Coverage
 
-Explain the steps needed to run any automated tests
+- `test_pipeline.py`: Ensures preprocessing consistency  
+- `test_transformers.py`: Validates custom features (e.g., contrast words, character counts)  
+- `test_spacy_transformers.py`: Verifies NLP-based feature extraction  
+- `test_dashboard.py`: Confirms correct dashboard functionality
 
-### Break Down Tests
+---
 
-Explain what each test does and why
+## 📥 Installation
 
+```bash
+# 1. Clone repo
+git clone https://github.com/yourusername/review-classifier.git
+
+# 2. Install dependencies
+pip install -r requirements.txt
+
+# 3. Install package
+pip install -e python-package
 ```
-Examples here
+
+## 📓 Explore the Project
+
+```bash
+jupyter notebook starter/starter.ipynb
 ```
 
-## Project Instructions
+---
 
-This section should contain all the student deliverables for this project.
+## 🛠️ Built With
 
-## Built With
+- **Python 3.10**
+- **scikit-learn** – ML modeling and pipelines  
+- **spaCy** – NLP preprocessing and POS/NER  
+- **pandas / numpy** – Data analysis and manipulation  
+- **pytest** – Test automation  
+- **fasthtml** – Custom web dashboard (no Streamlit/Gradio)
 
-* [Item1](www.item1.com) - Description of item
-* [Item2](www.item2.com) - Description of item
-* [Item3](www.item3.com) - Description of item
+---
 
-Include all items used to build project.
+## 📄 License
 
-## License
-
-[License](LICENSE.txt)
-
-## 🧑‍💻 Author
-
-Luc Will  
-M.Sc. Physicist, aspiring Data Scientist  
-(You can include LinkedIn, GitHub links, or Udacity info here.)
+Distributed under the [MIT License](LICENSE.txt).
