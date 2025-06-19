@@ -1,35 +1,62 @@
-# Text Review Classification Pipeline
+# 🧵 fashion_pipeline – Text Review Classification Components
 
-This package implements a modular machine learning pipeline for predicting product recommendation likelihood based on customer reviews. It includes components for data preprocessing, feature extraction, and model inference using scikit-learn and spaCy.
+This package provides the core components of a modular machine learning pipeline designed to predict whether a customer will recommend a product based on their review. It includes text preprocessing, custom transformers, and model utilities using `scikit-learn` and `spaCy`.
 
-## Structure
+## 📦 Module Overview
 
-### Modules
+- **`pipeline.py`**  
+  Defines the complete feature engineering pipeline:
+  - Numerical features: scaling, imputation, log transformation
+  - Categorical features: one-hot encoding
+  - Text features: TF-IDF, lemmatization, POS/NER-based statistics
 
-- `pipeline.py`  
-  Defines the full feature engineering pipeline, including numerical, categorical, and textual transformations.
+- **`transformers.py`**  
+  Contains custom `scikit-learn` transformers such as:
+  - Word and character counters
+  - Digit detectors
+  - Contrast word counters
 
-- `transformers.py`  
-  Contains custom scikit-learn transformers, such as word counters or character analysis.
+- **`spacy_transformers.py`**  
+  Implements advanced NLP features using `spaCy`, including:
+  - Lemmatization
+  - POS tag ratios
+  - Named entity counts
 
-- `spacy_transformers.py`  
-  Provides spaCy-based feature extraction (e.g., lemmatization, POS/NER features).
+- **`utils.py`**  
+  Utility functions for:
+  - Loading trained models (e.g., `gb_model.pkl`, `lr_model.pkl`)
 
-- `utils.py`  
-  Includes helper functions for loading the trained model (`rf_model.pkl`) and review dataset (`reviews.csv`).
+- **`report/dashboard.py`**  
+  Interactive prediction interface for text reviews using a `GradientBoostingClassifier`.
 
-### Data
+## 📁 Data Directory
 
-The `data/` folder contains:
-- `rf_model.pkl`: Trained Random Forest model
-- `reviews.csv`: Original dataset used for training and evaluation
+The `data/` folder includes:
+- `reviews.csv`: Cleaned dataset used for training and evaluation
+- `gb_model.pkl`: Trained Gradient Boosting model
+- `lr_model.pkl`: Trained Logistic Regression model
 
-## Usage
+## 🧪 Example Usage
 
 ```python
-from your_package import load_model, load_data, feature_engineering
+from fashion_pipeline.utils import load_model, load_data
 
-model = load_model()
-data = load_data()
+model = load_model("gb_model.pkl")
 X_transformed = feature_engineering.fit_transform(data)
 predictions = model.predict(X_transformed)
+```
+
+You can also load a dictionary-style review and get a prediction:
+
+```python
+sample_review = {
+    "Title": "Highly recommended",
+    "Review Text": "Beautiful material, great fit!",
+    "Age": 45,
+    "Division Name": "General",
+    "Department Name": "Dresses",
+    "Class Name": "Dresses"
+}
+
+model.predict([sample_review])
+```
