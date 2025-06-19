@@ -6,7 +6,7 @@ from pathlib import Path
 project_root = Path(__file__).parent
 
 # Path to the trained model file
-model_path = project_root / 'data' / 'rf_model.pkl' # / 'data' / 'mlp_100_50_model.pkl'
+model_path = project_root / 'data' / 'gb_model.pkl' # / 'data' / 'mlp_100_50_model.pkl'
 
 
 def load_model():
