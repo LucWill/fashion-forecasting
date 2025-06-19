@@ -6,7 +6,7 @@ __pycache__/
 *.so
 *.pyd
 *.pyo
-*.pkl
+# *.pkl
 *.log
 
 # Byte-compiled files
