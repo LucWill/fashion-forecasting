@@ -105,13 +105,13 @@ pytest
 
 ```bash
 # 1. Clone repo
-git clone https://github.com/yourusername/review-classifier.git
+git clone https://github.com/LucWill/fashion_pipeline.git
 
 # 2. Install dependencies
 pip install -r requirements.txt
 
 # 3. Install package
-pip install -e python-package
+pip install -e fashion_pipeline
 ```
 
 ## 📓 Explore the Project
